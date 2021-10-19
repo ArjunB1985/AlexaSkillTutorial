@@ -1,0 +1,167 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "birthday tracker",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "HelloWorldIntent",
+                    "slots": [],
+                    "samples": [
+                        "hello",
+                        "how are you",
+                        "say hi world",
+                        "say hi",
+                        "hi",
+                        "say hello world",
+                        "say hello"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "next_birthday_intent",
+                    "slots": [],
+                    "samples": [
+                        "give me the next birthday",
+                        "tell me the next birthday",
+                        "next birthday to wish",
+                        "next birthday please",
+                        "when is the next birthday",
+                        "can you tell me the next birthday"
+                    ]
+                },
+                {
+                    "name": "named_birthday_intent",
+                    "slots": [
+                        {
+                            "name": "name",
+                            "type": "AMAZON.FirstName"
+                        }
+                    ],
+                    "samples": [
+                        "can you tell me when is {name} birthday",
+                        "when is {name} birthday"
+                    ]
+                },
+                {
+                    "name": "add_birthday_intent",
+                    "slots": [
+                        {
+                            "name": "name",
+                            "type": "AMAZON.FirstName",
+                            "samples": [
+                                "its {name}",
+                                "her name is {name}",
+                                "his name is {name}",
+                                "{name}"
+                            ]
+                        },
+                        {
+                            "name": "birthday",
+                            "type": "AMAZON.DATE",
+                            "samples": [
+                                "{name} will celebrate her next birthday on {birthday}",
+                                "its {birthday}",
+                                "{birthday}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "add new birthday",
+                        "add another birthday",
+                        "add bithday"
+                    ]
+                }
+            ],
+            "types": []
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "add_birthday_intent",
+                    "delegationStrategy": "ALWAYS",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.39952503024"
+                    },
+                    "slots": [
+                        {
+                            "name": "name",
+                            "type": "AMAZON.FirstName",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.39952503024.462350153568"
+                            }
+                        },
+                        {
+                            "name": "birthday",
+                            "type": "AMAZON.DATE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.39952503024.1066089404190"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.39952503024.1066089404190",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Please tell me the next birthday"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Please tell me when is the next birthday for {name}"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.39952503024",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "I am adding {name} with next birthday on {birthday} . Is that correct?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "So, just to confirm we are adding a birthday record for {name} on {birthday} . Is that correct?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.39952503024.462350153568",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Tell me the name of the person"
+                    }
+                ]
+            }
+        ]
+    }
+}
